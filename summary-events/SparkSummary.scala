@@ -47,7 +47,7 @@ object SparkSummaryVerification {
     println("Total Time spent on App in hours:");
     println(filterAppSessionsTimeDf.show(30,false));
 
-    val totalAppDevicesDf = withDateDf.filter(withDateDf("context.pdata.id") === "prod.diksha.app").groupBy(withDateDf("sync_date")).agg(countDistinct(withDateDf("context.did"))).sort(withDateDf("sync_date"))
+    val totalAppDevicesDf = withDateDf.filter(withDateDf("dimensions.pdata.id") === "prod.diksha.app").groupBy(withDateDf("sync_date")).agg(countDistinct(withDateDf("dimensions.did"))).sort(withDateDf("sync_date"))
     println("Total Devices On App: ");
     println(totalAppDevicesDf.show(30, false));
   }
